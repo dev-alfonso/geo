@@ -3,6 +3,9 @@ import { InputText, StyleSheet, Text, TextInput, TouchableOpacity, View } from '
 
 import { Marker } from 'react-native-maps';
 import { withFormik } from 'formik';
+import { string, object } from 'yup';
+
+let Yup = require('yup');
 
 const FormNote = (props) => {
   return (
@@ -16,6 +19,9 @@ const FormNote = (props) => {
         onChangeText={value => props.setFieldValue('note', value)}
         value={props.values.note}
       />
+      <Text style={{ color: 'red' }}>
+        {props.errors.note}
+      </Text>
       <View style={{ flexDirection: "row" }}>
         <TouchableOpacity style={[styles.buttonOption, styles.buttonCancel]} onPress={props.closeModal}>
           <Text style={styles.labelButton}>Cancelar</Text>
@@ -38,7 +44,10 @@ const form = withFormik({
   handleSubmit: (values, { props }) => {
     createNote(values, props);
   },
-  validateOnChange: false
+  validateOnChange: false,
+  validationSchema: Yup.object().shape({
+    note: Yup.string().required('Preencha este campo com alguma anotação')
+  })
 })(FormNote);
 
 const styles = StyleSheet.create({
@@ -71,7 +80,7 @@ const styles = StyleSheet.create({
   buttonOption: {
     width: "50%",
     padding: 10,
-    marginTop: 15
+    marginTop: 10
   },
 
   buttonSubmit: {
