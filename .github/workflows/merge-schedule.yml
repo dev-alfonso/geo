@@ -16,5 +16,16 @@ jobs:
       - uses: gr2m/merge-schedule-action@v1
         with:
           merge_method: merge
+          time_zone: "America/Sao_Paulo"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/checkout@master
+
+      - name: Merge develop -> master
+        uses: devmasx/merge-branch@v1.3.1
+        with:
+          type: now
+          from_branch: develop
+          target_branch: master
+          github_token: ${{ secrets.GITHUB_TOKEN }}
