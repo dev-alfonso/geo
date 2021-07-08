@@ -20,12 +20,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
 
-      - name: Merge develop -> master
+      - name: Merge develop -> main
         uses: devmasx/merge-branch@v1.3.1
         with:
           type: now
           from_branch: develop
-          target_branch: master
+          target_branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
