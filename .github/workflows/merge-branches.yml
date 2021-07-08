@@ -1,4 +1,4 @@
-name: Merge Branches
+name: Merge branches
 on:
   pull_request:
     types:
