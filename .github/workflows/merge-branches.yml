@@ -1,4 +1,4 @@
-name: Merge Schedule
+name: Merge Branches
 on:
   pull_request:
     types:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main branch
-      - uses: actions/checkout@main
+        uses: actions/checkout@main
 
       - name: Merge develop -> main
         uses: devmasx/merge-branch@v1.3.1
