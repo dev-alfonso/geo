@@ -3,6 +3,8 @@ on:
   pull_request:
     types:
       - closed
+    branches:
+      - develop
   schedule:
     # https://crontab.guru/every-hour
     - cron: 0 * * * *
